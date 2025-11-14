@@ -28,30 +28,23 @@ Before touching Splunk, I had to make sure my Windows version and CPU were compa
 
 I pulled the Splunk image and ran it in a container. It felt powerful seeing the GUI open in my browser. Containers are really lightweight compared to spinning up full VMs for each SOC tool.  
 
-
-
-- Splunk Enterprise container image  
-- Container ports mapped to host (8000 for Web, 9997 for Forwarder)  
-- License acceptance handled through environment variables  
+<img width="788" height="285" alt="bTPwD9C" src="https://github.com/user-attachments/assets/26d6bf43-b9d4-463a-8254-3aaf0662212e" />
 
 ---
 
-## 🌐 Splunk Web Exploration
+<img width="619" height="107" alt="NQlziii" src="https://github.com/user-attachments/assets/db399939-8f7d-464c-9612-a47da73cb9dd" />
 
-Opening Splunk Web was exciting. The GUI is intuitive and dashboards are easy to explore. I got familiar with the Search & Reporting app and menus.  
-
-
-
-- Browser-based Splunk Web UI  
-- Dashboards summarize logs and metrics   
+>- Splunk Enterprise container image  
+>- Container ports mapped to host (8000 for Web, 9997 for Forwarder)  
+>- License acceptance handled through environment variables  
 
 ---
 
 ## 📂 Creating a Sample Log
 
+<img width="599" height="127" alt="OIGb5bc" src="https://github.com/user-attachments/assets/c4dc088b-d7b8-4089-99ac-41a3051aa5c5" />
+
 I created a sample log on my Windows endpoint to simulate real logs. This helped me practice ingestion and understand how endpoints feed data into Splunk.  
-
-
 
 - Windows endpoint Documents folder  
 - Sample log file with multiple test lines  
