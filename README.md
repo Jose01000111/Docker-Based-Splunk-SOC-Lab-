@@ -1,6 +1,6 @@
 # Phase 6 — 🐳 Docker-Based Splunk SOC Lab (Windows 11 Pro x64)
 
-In this phase, I’m diving into running Splunk Enterprise in Docker on my Windows 11 Pro machine. My goal is to understand how Splunk interacts with Windows, containers, endpoints, and VMs in a SOC lab. It was frustrating at first because Docker setup and permissions kept tripping me up, but by the end, everything is running and I can really start learning Splunk.
+In this phase, I’m running Splunk Enterprise in Docker on my Windows 11 Pro machine. The goal is to understand how Splunk interacts with Windows, containers, endpoints, and VMs in a SOC lab. It was a little frustrating at first because Docker setup and permissions got in the way, but by the end, everything worked and I could finally start learning Splunk properly.
 
 ---
 
@@ -11,140 +11,93 @@ Before touching Splunk, I had to make sure my Windows version and CPU were compa
 - Windows 11 Pro, Version 22H2, x64-based  
 - Docker Desktop for AMD64 with WSL2 backend  
 - Host OS interacts with containers for port mapping and file sharing  
-- Understanding leftover containers and cleanup helps prevent conflicts
-
-Tech Stack / Index:
-
-- Windows 11 Pro x64  
-- Docker Desktop (AMD64)  
-- WSL2  
-- PowerShell (for managing files and Docker commands)
+- Troubleshooting leftover containers prevents conflicts  
 
 ---
 
 ## 🐳 Pulling and Running the Splunk Container
 
-I pulled the Splunk image and ran it in a container. The GUI opened in my browser, which made me realize how containers can host SOC tools without spinning up full VMs for everything. I ran into license acceptance errors and leftover container issues, which taught me how to troubleshoot in a Docker environment.  
+I pulled the Splunk image and ran it in a container. It felt powerful seeing the GUI open in my browser. Containers are really lightweight compared to spinning up full VMs for each SOC tool.  
 
-- Container runs Splunk Web (port 8000) and Forwarder (port 9997)  
-- Mapping container ports to Windows host is key for access  
-- License acceptance and container cleanup are part of Docker workflow  
-
-Tech Stack / Index:
-
-- Splunk Enterprise (Docker image)  
-- Container ports mapped to host  
-- Docker run parameters for environment variables  
+- Splunk Enterprise container image  
+- Container ports mapped to host (8000 for Web, 9997 for Forwarder)  
+- License acceptance handled through environment variables  
+- Learned about stopping/removing leftover containers  
 
 ---
 
 ## 🌐 Splunk Web Exploration
 
-Opening Splunk Web for the first time was satisfying. Dashboards, menus, and system settings are intuitive. I explored Search & Reporting and default dashboards to understand where data will appear once I start ingesting logs.  
+Opening Splunk Web was exciting. The GUI is intuitive and dashboards are easy to explore. I got familiar with the Search & Reporting app and menus.  
 
-- Search & Reporting app is my main workspace  
-- Default dashboards give quick insights  
-- Settings menu manages users, roles, indexes, and apps  
-- Using a browser on Windows host interacts directly with containerized Splunk  
-
-Tech Stack / Index:
-
-- Splunk Web UI  
-- Windows host browser  
-- Dashboards & Reporting app  
+- Browser-based Splunk Web UI  
+- Dashboards summarize logs and metrics  
+- Settings menu for users, roles, indexes, and apps  
+- Visual exploration of data without needing a server directly  
 
 ---
 
 ## 📂 Creating a Sample Log
 
-I created a sample log on my Windows endpoint to simulate logs from a real server or endpoint. This helped me practice ingesting data without needing a full VM or forwarder.  
+I created a sample log on my Windows endpoint to simulate real logs. This helped me practice ingestion and understand how endpoints feed data into Splunk.  
 
-- Documents folder on Windows host contains `sample2.log`  
-- Test logs simulate Windows endpoint events  
-- Copied log into the container for ingestion  
-
-Tech Stack / Index:
-
-- Windows endpoint file system  
-- PowerShell for file creation  
-- Docker copy command to move logs into container  
+- Windows endpoint Documents folder  
+- Sample log file with multiple test lines  
+- Logs copied into Docker container for ingestion  
+- Simulated real SOC environment with endpoint data  
 
 ---
 
 ## 📊 Creating a Splunk Index
 
-I created a new index called `os_logs` in Splunk Web. Keeping extra options disabled allowed me to focus on ingestion and searching rather than complex index settings.  
+I created a new index in Splunk Web called `os_logs`. I kept extra options disabled so I could focus on learning ingestion and searches.  
 
-- Index holds all Windows sample logs  
-- Paths mostly default to container-managed storage  
-- Disabled tsidx reduction and integrity checks to simplify lab  
-
-Tech Stack / Index:
-
-- Splunk Indexes: os_logs  
-- Event-based indexing  
-- Splunk GUI for index management  
+- Index: os_logs  
+- Event-based data type  
+- Max size: 500 GB, Buckets: auto  
+- Simplified paths and settings to focus on learning  
 
 ---
 
 ## ⬆️ Uploading Logs
 
-Uploading `sample2.log` made me feel like I was bridging my Windows endpoint with Splunk running in Docker. Seeing logs appear in searches confirmed the container-host integration works.  
+Uploading the sample log made me feel like I was bridging my Windows endpoint with Splunk running in Docker. Seeing the logs appear in searches was really satisfying.  
 
-- File uploaded from Windows host to Splunk container  
-- Source type set to syslog (or auto-detect)  
-- Index set to `os_logs`  
-
-Tech Stack / Index:
-
-- Windows endpoint log file  
-- Splunk Web Add Data function  
-- syslog source type  
-- os_logs index  
+- File uploaded from Windows host  
+- Source type: syslog (or auto-detect)  
+- Index: os_logs  
+- Simulated real-time log ingestion from endpoints  
 
 ---
 
 ## 🔍 Searching Logs
 
-After uploading, I ran searches to verify everything worked. All test lines appeared. This step helped me practice the most essential Splunk skill: finding the data I need quickly.  
+Running searches verified that everything worked. All test lines appeared, confirming the container-host integration and ingestion pipeline are solid.  
 
-- Confirmed logs from Windows endpoint appear  
-- Validated ingestion pipeline from host → container → Splunk  
-- Practiced using basic Splunk queries  
-
-Tech Stack / Index:
-
-- Splunk search bar  
-- index=os_logs  
-- sourcetype=syslog  
+- Search bar queries: index=os_logs sourcetype=syslog  
+- Verified Windows endpoint logs appear in Splunk  
+- Practiced basic Splunk search skills for SOC scenarios  
+- Built confidence in the ingestion → search workflow  
 
 ---
 
 ## 🔄 Container Control
 
-I stopped and restarted the container to simulate real operations. Splunk preserved the data, proving containerized setups can be stable for SOC labs.  
+I stopped and restarted the container to simulate real-world operations. Splunk preserved the data, which is reassuring for SOC lab practice.  
 
-- Stop/start container preserves logs  
-- Access container logs via Docker for troubleshooting  
-- Useful for testing resilience without full VM resets  
-
-Tech Stack / Index:
-
-- Docker container lifecycle commands  
-- Persistent Splunk container storage  
+- Docker stop/start commands for container lifecycle  
+- Persistent container storage maintains logs  
+- Useful for testing container stability without full VMs  
+- Learned resilience and troubleshooting in Docker environment  
 
 ---
 
 ## ✍️ Observations
 
-Running Splunk in Docker on Windows 11 Pro gave me hands-on insight into how SOC tools can run on lightweight containers. I can ingest logs from Windows endpoints, experiment with dashboards, and practice searches without needing multiple VMs. Troubleshooting Docker permissions, leftover containers, and file paths was frustrating but valuable.  
+Running Splunk in Docker on Windows 11 Pro gave me hands-on insight into SOC labs without needing multiple VMs. I can ingest logs from endpoints, experiment with dashboards, and practice searches. Troubleshooting Docker permissions, leftover containers, and file paths was frustrating but super educational.  
 
-I feel more confident that I can run Splunk locally, bridge Windows endpoints or servers, and start building real SOC workflows in a lab environment.
+- Windows host + Docker container integration  
+- Endpoint log ingestion  
+- Splunk Web exploration and dashboards  
+- Hands-on SOC lab experience in a lightweight containerized setup
 
-Tech Stack / Index:
-
-- Windows host  
-- Windows endpoint logs  
-- Docker + Splunk container  
-- Splunk Web UI  
-- Search & Reporting app  
