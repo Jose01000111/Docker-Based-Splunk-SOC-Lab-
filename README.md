@@ -9,13 +9,18 @@ In this phase, I’m running Splunk Enterprise in Docker on my Windows 11 Pro ma
 Before touching Splunk, I had to make sure my Windows version and CPU were compatible. I also learned how Docker containers behave on Windows and how WSL2 interacts with the host OS.  
 
 <img width="458" height="456" alt="3MGgXqE" src="https://github.com/user-attachments/assets/e01a1bd2-8960-429e-9c7d-210a1657c642" />
+
+---
+
 <img width="699" height="489" alt="JiQ89Tn" src="https://github.com/user-attachments/assets/8f1994c0-65f6-42c1-b1dc-471ea0d4d2ef" />
+
+---
 
 <img width="686" height="765" alt="HS18rl0" src="https://github.com/user-attachments/assets/f3b7a0a6-7a7c-4d26-b29f-e1ab95ab3671" />
 
-- Windows 11 Pro, Version 22H2, x64-based  
-- Docker Desktop for AMD64 with WSL2 backend  
-- Host OS interacts with containers for port mapping and file sharing   
+>- Windows 11 Pro, Version 22H2, x64-based  
+>- Docker Desktop for AMD64 with WSL2 backend  
+>- Host OS interacts with containers for port mapping and file sharing   
 
 ---
 
