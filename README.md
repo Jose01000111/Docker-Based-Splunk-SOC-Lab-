@@ -8,10 +8,14 @@ In this phase, I’m running Splunk Enterprise in Docker on my Windows 11 Pro ma
 
 Before touching Splunk, I had to make sure my Windows version and CPU were compatible. I also learned how Docker containers behave on Windows and how WSL2 interacts with the host OS.  
 
+<img width="458" height="456" alt="3MGgXqE" src="https://github.com/user-attachments/assets/e01a1bd2-8960-429e-9c7d-210a1657c642" />
+<img width="699" height="489" alt="JiQ89Tn" src="https://github.com/user-attachments/assets/8f1994c0-65f6-42c1-b1dc-471ea0d4d2ef" />
+
+<img width="686" height="765" alt="HS18rl0" src="https://github.com/user-attachments/assets/f3b7a0a6-7a7c-4d26-b29f-e1ab95ab3671" />
+
 - Windows 11 Pro, Version 22H2, x64-based  
 - Docker Desktop for AMD64 with WSL2 backend  
-- Host OS interacts with containers for port mapping and file sharing  
-- Troubleshooting leftover containers prevents conflicts  
+- Host OS interacts with containers for port mapping and file sharing   
 
 ---
 
@@ -19,10 +23,11 @@ Before touching Splunk, I had to make sure my Windows version and CPU were compa
 
 I pulled the Splunk image and ran it in a container. It felt powerful seeing the GUI open in my browser. Containers are really lightweight compared to spinning up full VMs for each SOC tool.  
 
+
+
 - Splunk Enterprise container image  
 - Container ports mapped to host (8000 for Web, 9997 for Forwarder)  
 - License acceptance handled through environment variables  
-- Learned about stopping/removing leftover containers  
 
 ---
 
@@ -30,10 +35,10 @@ I pulled the Splunk image and ran it in a container. It felt powerful seeing the
 
 Opening Splunk Web was exciting. The GUI is intuitive and dashboards are easy to explore. I got familiar with the Search & Reporting app and menus.  
 
+
+
 - Browser-based Splunk Web UI  
-- Dashboards summarize logs and metrics  
-- Settings menu for users, roles, indexes, and apps  
-- Visual exploration of data without needing a server directly  
+- Dashboards summarize logs and metrics   
 
 ---
 
@@ -41,10 +46,11 @@ Opening Splunk Web was exciting. The GUI is intuitive and dashboards are easy to
 
 I created a sample log on my Windows endpoint to simulate real logs. This helped me practice ingestion and understand how endpoints feed data into Splunk.  
 
+
+
 - Windows endpoint Documents folder  
 - Sample log file with multiple test lines  
-- Logs copied into Docker container for ingestion  
-- Simulated real SOC environment with endpoint data  
+ 
 
 ---
 
@@ -52,10 +58,11 @@ I created a sample log on my Windows endpoint to simulate real logs. This helped
 
 I created a new index in Splunk Web called `os_logs`. I kept extra options disabled so I could focus on learning ingestion and searches.  
 
+
+
 - Index: os_logs  
 - Event-based data type  
-- Max size: 500 GB, Buckets: auto  
-- Simplified paths and settings to focus on learning  
+- Max size: 500 GB, Buckets: auto   
 
 ---
 
@@ -63,10 +70,12 @@ I created a new index in Splunk Web called `os_logs`. I kept extra options disab
 
 Uploading the sample log made me feel like I was bridging my Windows endpoint with Splunk running in Docker. Seeing the logs appear in searches was really satisfying.  
 
+
+
+
 - File uploaded from Windows host  
 - Source type: syslog (or auto-detect)  
 - Index: os_logs  
-- Simulated real-time log ingestion from endpoints  
 
 ---
 
@@ -74,9 +83,10 @@ Uploading the sample log made me feel like I was bridging my Windows endpoint wi
 
 Running searches verified that everything worked. All test lines appeared, confirming the container-host integration and ingestion pipeline are solid.  
 
+
+
+
 - Search bar queries: index=os_logs sourcetype=syslog  
-- Verified Windows endpoint logs appear in Splunk  
-- Practiced basic Splunk search skills for SOC scenarios  
 - Built confidence in the ingestion → search workflow  
 
 ---
@@ -86,9 +96,7 @@ Running searches verified that everything worked. All test lines appeared, confi
 I stopped and restarted the container to simulate real-world operations. Splunk preserved the data, which is reassuring for SOC lab practice.  
 
 - Docker stop/start commands for container lifecycle  
-- Persistent container storage maintains logs  
-- Useful for testing container stability without full VMs  
-- Learned resilience and troubleshooting in Docker environment  
+
 
 ---
 
