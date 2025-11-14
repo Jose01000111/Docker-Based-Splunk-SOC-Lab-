@@ -62,12 +62,6 @@ I created a new index in Splunk Web called `os_logs`. I kept extra options disab
 
 <img width="945" height="174" alt="joFA4KD" src="https://github.com/user-attachments/assets/1a4fade0-ea0f-419f-a703-6b5f58a4e964" />
 
----
-
-<img width="447" height="194" alt="o2XY6ey" src="https://github.com/user-attachments/assets/ca1540da-bfd9-4885-b07f-5cd0db3a5914" />
-
-
-
 >- Index: os_logs  
 >- Event-based data type  
 >- Max size: 500 GB, Buckets: auto   
@@ -78,8 +72,7 @@ I created a new index in Splunk Web called `os_logs`. I kept extra options disab
 
 Uploading the sample log made me feel like I was bridging my Windows endpoint with Splunk running in Docker. Seeing the logs appear in searches was really satisfying.  
 
-
-
+<img width="447" height="194" alt="o2XY6ey" src="https://github.com/user-attachments/assets/ca1540da-bfd9-4885-b07f-5cd0db3a5914" />
 
 >- File uploaded from Windows host  
 >- Source type: syslog (or auto-detect)  
